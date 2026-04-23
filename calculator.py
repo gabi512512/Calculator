@@ -3,30 +3,24 @@ class Calculator:
         self.result = float(input("Your first number: "))
 
     def add(self):
-        print("You choosed add")
         number = float(input("Your desired number to be added to result: "))
         self.result += number
-        print(self.result)
+        self.print()
 
     def substract(self):
-        print("You choosed substract")
-        number = float(
-            input("Your desired number to be substracted from the result: "))
+        number = float(input("Your desired number to be substracted from the result: "))
         self.result -= number
-        print(self.result)
+        self.print()
 
     def multiply(self):
-        print("You choosed multiplication")
-        number = float(
-            input("Your desired number to multiply the result by: "))
+        number = float(input("Your desired number to multiply the result by: "))
         self.result *= number
-        print(self.result)
+        self.print()
 
     def divide(self):
-        print("You choosed division")
         number = float(input("Your desired number to divide the result by: "))
         self.result /= number
-        print(self.result)
+        self.print()
 
     def clear(self):
         print("You choosed clear")
@@ -46,13 +40,19 @@ class Calculator:
         else:
             print("Invalid option!")
 
+    def print(self):
+        if(self.result.is_integer()):
+            print(int(self.result))
+        else:
+            print(self.result)
+
     def start(self):
         print("The calculator has been started, if you want to stop it just type stop"
               "Options:\n"
               "'add' -> addition | 'substract' -> substraction | 'multiply' -> multiplication | 'divide' -> division\n"
               "'clear' -> clears the result")
         while True:
-            selection = input("Your selection: ")
+            selection = input("Your selection: ").lower()
             if (selection == "stop"):
                 break
             else:
