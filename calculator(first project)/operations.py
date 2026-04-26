@@ -1,27 +1,27 @@
 GENERAL_MESSAGE = "Operation: {operation} | Your number: "
 
-def initialRead(calculator):
+def initialRead(calculator) -> None:
     calculator.result = readFloat("Insert your starting number: ")
 
-def readFloat(message= "Your number: "):
+def readFloat(message= "Your number: ") -> float:
         return float(input(message))
 
-def add(calculator):
-    calculator.result += readFloat(GENERAL_MESSAGE.format(operation = "add"))
+def add(calculator) -> None:
+    calculator.result += readFloat(GENERAL_MESSAGE.format(operation = "addition"))
     calculator.print()
 
-def subtract(calculator):
-    calculator.result -= readFloat(GENERAL_MESSAGE.format(operation = "subtract"))
+def subtract(calculator) -> None:
+    calculator.result -= readFloat(GENERAL_MESSAGE.format(operation = "subtraction"))
     calculator.print()
 
-def multiply(calculator):
+def multiply(calculator) -> None:
     calculator.result *= readFloat(GENERAL_MESSAGE.format(operation = "multiplication"))
     calculator.print()
 
-def divide(calculator):
+def divide(calculator) -> None:
         calculator.result /= readFloat(GENERAL_MESSAGE.format(operation = "division"))
         calculator.print()
 
-def clear(calculator):
+def clear(calculator) -> None:
     print("Cleared")
     initialRead(calculator)

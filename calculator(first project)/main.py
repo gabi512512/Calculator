@@ -1,4 +1,5 @@
 from calculator import Calculator
 
-c = Calculator()
-c.start()
+if __name__ == '__main__':
+    c = Calculator()
+    c.start()

@@ -7,10 +7,10 @@ Options:
 'add' -> addition | 'substract' -> substraction | 'multiply' -> multiplication | 'divide' -> division
 'clear' -> clears the result"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.result = 0.0
 
-    def selector(self, selection):
+    def selector(self, selection) -> None:
         match selection:
             case "add":
                 add(self)
@@ -25,13 +25,13 @@ Options:
             case _:
                 print("Invalid option!")
 
-    def print(self):
+    def print(self) -> None:
         if(self.result.is_integer()):
             print(int(self.result))
         else:
             print(self.result)
 
-    def start(self):
+    def start(self) -> None:
         print(self.INITIAL_MESSAGE)
         initialRead(self)
 
