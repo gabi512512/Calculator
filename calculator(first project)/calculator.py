@@ -1,4 +1,4 @@
-from operations import add, substract, multiply, divide, clear, initialRead
+from operations import add, subtract, multiply, divide, clear, initialRead
 
 class Calculator:
     # the starting menu message
@@ -8,14 +8,14 @@ Options:
 'clear' -> clears the result"""
 
     def __init__(self):
-        self.result = 0
+        self.result = 0.0
 
     def selector(self, selection):
         match selection:
             case "add":
                 add(self)
             case "substract":
-                substract(self)
+                subtract(self)
             case "multiply":
                 multiply(self)
             case "divide":
