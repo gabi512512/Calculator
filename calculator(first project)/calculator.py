@@ -42,13 +42,13 @@ Your Mode: """,
     def selector(self, selection) -> None:
         if self.mode == "Normal":
             match selection:
-                case "add" if self.mode == "Normal":
+                case "add":
                     add(self)
-                case "substract" if self.mode == "Normal":
+                case "substract":
                     subtract(self)
-                case "multiply" if self.mode == "Normal":
+                case "multiply":
                     multiply(self)
-                case "divide" if self.mode == "Normal":
+                case "divide":
                     divide(self)
                 case "clear":
                     clear(self)
@@ -62,7 +62,7 @@ Your Mode: """,
                 case "mode":
                     self.selectMode()
                 case _:
-                    if Calculator.isExpression(selection) and self.mode == "Complete":
+                    if Calculator.isExpression(selection):
                         self.result = evaluateExpression(selection)
                         print(self)
                         return
