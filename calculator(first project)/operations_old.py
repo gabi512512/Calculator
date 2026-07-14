@@ -1,6 +1,7 @@
 from constants import CONSTANTS
 
 GENERAL_MESSAGE = "Operation: {operation} | Your number: "
+    
 
 def readFloat(message= "Your number: ") -> float:
     inputVal = input(message).lower()

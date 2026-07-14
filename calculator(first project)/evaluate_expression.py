@@ -14,7 +14,7 @@ def evaluateExpression(selection) -> float:
         if char.isnumeric() or char == ".":
             buffer += char
             
-            if(selection[i+1]) == "(":
+            if i+1 < len(selection) and selection[i+1] == "(":
                 operators.append("*")
                 postfix.append(float(buffer))
                 buffer = ""
@@ -27,7 +27,7 @@ def evaluateExpression(selection) -> float:
             operators.append(char)
 
             # special case for when we write for example 1*(-2)
-            if selection[i+1] == "-":
+            if i+1 < len(selection) and selection[i+1] == "-":
                 buffer += "-"
                 i += 1 # we skip the "-" in the expression
         
