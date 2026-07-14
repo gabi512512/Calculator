@@ -1,7 +1,7 @@
 import sys
 from functools import partial
 from calculator import Calculator
-from constants import OPERATORS, CONSTANTS
+from constants import OPERATORS, CONSTANTS, INPUT_ERROR
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QLabel, 
                              QPushButton, QLineEdit, 
                              QWidget, QGridLayout, QVBoxLayout)
@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
         self.title = QLabel("Calculator")
         self.input = QLineEdit()
         self.result = QLabel(f"Result: {self.calc.result:g}")
+        self.error = QLabel()
         self.btn1 = QPushButton("1")
         self.btn2 = QPushButton("2")
         self.btn3 = QPushButton("3")
@@ -61,6 +62,7 @@ class MainWindow(QMainWindow):
         vbox.addWidget(self.title)
         vbox.addWidget(self.input)
         vbox.addWidget(self.result)
+        vbox.addWidget(self.error)
         vbox.addLayout(self.grid)
         vbox.addWidget(self.btn_clr)
         vbox.setSpacing(10)
@@ -80,18 +82,31 @@ class MainWindow(QMainWindow):
 
     def on_button_click(self, text):
         if text in OPERATORS.keys():
-            number = int(self.input.text())
-            if text == "+":
-                self.calc.add(number)
-            elif text == "-":
-                self.calc.substract(number)
-            elif text == "*":
-                self.calc.multiply(number)
-            elif text == "/":
-                self.calc.divide(number)
-            
-            self.result.setText(f"Result: {self.calc.result:g}")
-            self.input.setText("")
+            number = self.calc.getNumber(self.input.text())
+            if number == INPUT_ERROR[0]:
+                self.error.setText(INPUT_ERROR[0])
+                error_occured = True
+            else:
+                if text == "+":
+                    self.calc.add(number)
+                    error_occured = False
+                elif text == "-":
+                    self.calc.substract(number)
+                    error_occured = False
+                elif text == "*":
+                    self.calc.multiply(number)
+                    error_occured = False
+                elif text == "/":
+                    if self.calc.divide(number) == -1:
+                        self.error.setText(INPUT_ERROR[1])
+                        error_occured = True
+                    else:
+                        error_occured = False
+                
+                self.result.setText(f"Result: {self.calc.result:g}")
+                self.input.setText("")
+                if not error_occured:
+                    self.error.setText("")
 
         elif text == "Clear":
             self.calc.clear()
@@ -118,6 +133,8 @@ class MainWindow(QMainWindow):
         self.input.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.result.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.result.setMaximumHeight(50)
+        self.error.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.error.setMaximumHeight(50)
         self.grid.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
 
@@ -125,6 +142,7 @@ class MainWindow(QMainWindow):
         self.title.setObjectName("title")
         self.input.setObjectName("input")
         self.result.setObjectName("result")
+        self.error.setObjectName("error")
         
         """self.btn1.setObjectName("btn1")
         self.btn2.setObjectName("btn2")

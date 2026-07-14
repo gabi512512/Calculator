@@ -9,6 +9,11 @@ QLabel#result {
     font-size: 30px;
 }
 
+QLabel#error {
+    font-family: Arial;
+    font-size: 30px;
+}
+
 QLineEdit#input {
     color: #9e9e9e;
     font-family: Arial;
