@@ -91,13 +91,13 @@ class MainWindow(QMainWindow):
                     self.calc.add(number)
                     error_occured = False
                 elif text == "-":
-                    self.calc.substract(number)
+                    self.calc.subtract(number)
                     error_occured = False
                 elif text == "*":
                     self.calc.multiply(number)
                     error_occured = False
                 elif text == "/":
-                    if self.calc.divide(number) == -1:
+                    if self.calc.divide(number) == INPUT_ERROR[1]:
                         self.error.setText(INPUT_ERROR[1])
                         error_occured = True
                     else:
@@ -120,7 +120,7 @@ class MainWindow(QMainWindow):
     @staticmethod
     def start():
         app = QApplication(sys.argv)
-        with open("C:\Personal\diverse proiecte\python\proiecte_python\calculator(first project)\style.qss", "r") as f:
+        with open("calculator\style.qss", "r") as f:
             app.setStyleSheet(f.read())
         window = MainWindow()
         window.show()

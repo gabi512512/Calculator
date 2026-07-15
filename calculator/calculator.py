@@ -9,12 +9,16 @@ class Calculator:
             number = int(text)
             return number
         except ValueError:
-            return INPUT_ERROR[0]
+            try:
+                number = float(text)
+                return number
+            except ValueError:
+                return INPUT_ERROR[0]
 
     def add(self, number):
         self.result += number
 
-    def substract(self, number):
+    def subtract(self, number):
         self.result -= number
 
     def multiply(self, number):
@@ -24,7 +28,7 @@ class Calculator:
         try:
             self.result /= number
         except ZeroDivisionError:
-            return -1
+            return INPUT_ERROR[1]
     
     def clear(self):
         self.result = 0.0
